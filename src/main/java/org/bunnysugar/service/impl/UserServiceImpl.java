@@ -31,8 +31,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByUserAccount(String account) {
+        return userMapper.findByUserAccount(account);
+    }
+
+    @Override
     public User SelectUserById(Integer id) {
         return userMapper.selectUserById(id);
     }
+
 }
 
