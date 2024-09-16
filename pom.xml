@@ -62,5 +62,10 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    <!--springboot封裝的mail-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-mail</artifactId>
+    </dependency>
   </dependencies>
 </project>

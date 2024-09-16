@@ -15,6 +15,6 @@ public class WebConfig implements WebMvcConfigurer {  //這邊用來註冊攔截
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //登入接口與註冊接口不攔截
-        registry.addInterceptor(loginInterceptor).excludePathPatterns("/user/login", "/user/register");
+        registry.addInterceptor(loginInterceptor).excludePathPatterns("/user/login", "/user/register", "/user/verify");
     }
 }

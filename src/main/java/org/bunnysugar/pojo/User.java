@@ -14,6 +14,7 @@ public class User {
     private Integer bunnyCoin; // 虛擬貨幣
     private String isActive; // 是否啟用
     private String verifyingToken; // 驗證碼
+    private LocalDateTime tokenExpirationTime; // 驗證碼過期時間
     private String forgetToken; // 忘記密碼碼
     private Integer loginMethod; // 登入方式
     private String googleToken; // Google 登入 token
@@ -23,8 +24,8 @@ public class User {
     private LocalDateTime lastLoginTime; // 最後登入時間
     private Integer gameTimes; // 遊戲次數
 
-
-    public User(Integer id, String account, String password, String email, String name, Integer gender, String phone, LocalDateTime birthday, Integer bunnyCoin, String isActive, String verifyingToken, String forgetToken, Integer loginMethod, String googleToken, String facebookToken, LocalDateTime createTime, LocalDateTime updateTime, LocalDateTime lastLoginTime, Integer gameTimes) {
+    // 全部參數的建構子
+    public User(Integer id, String account, String password, String email, String name, Integer gender, String phone, LocalDateTime birthday, Integer bunnyCoin, String isActive, String verifyingToken, LocalDateTime tokenExpirationTime, String forgetToken, Integer loginMethod, String googleToken, String facebookToken, LocalDateTime createTime, LocalDateTime updateTime, LocalDateTime lastLoginTime, Integer gameTimes) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -36,6 +37,7 @@ public class User {
         this.bunnyCoin = bunnyCoin;
         this.isActive = isActive;
         this.verifyingToken = verifyingToken;
+        this.tokenExpirationTime = tokenExpirationTime;
         this.forgetToken = forgetToken;
         this.loginMethod = loginMethod;
         this.googleToken = googleToken;
@@ -46,6 +48,7 @@ public class User {
         this.gameTimes = gameTimes;
     }
 
+    // Getter 和 Setter 方法
     public Integer getId() {
         return id;
     }
@@ -134,6 +137,14 @@ public class User {
         this.verifyingToken = verifyingToken;
     }
 
+    public LocalDateTime getTokenExpirationTime() {
+        return tokenExpirationTime;
+    }
+
+    public void setTokenExpirationTime(LocalDateTime tokenExpirationTime) {
+        this.tokenExpirationTime = tokenExpirationTime;
+    }
+
     public String getForgetToken() {
         return forgetToken;
     }
@@ -212,6 +223,7 @@ public class User {
                 ", bunnyCoin=" + bunnyCoin +
                 ", isActive='" + isActive + '\'' +
                 ", verifyingToken='" + verifyingToken + '\'' +
+                ", tokenExpirationTime=" + tokenExpirationTime +
                 ", forgetToken='" + forgetToken + '\'' +
                 ", loginMethod=" + loginMethod +
                 ", googleToken='" + googleToken + '\'' +

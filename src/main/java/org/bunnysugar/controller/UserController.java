@@ -1,13 +1,17 @@
 package org.bunnysugar.controller;
 
+import org.bunnysugar.exception.InvalidTokenException;
+import org.bunnysugar.exception.TokenExpiredException;
 import org.bunnysugar.pojo.LoginRequest;
 import org.bunnysugar.pojo.Result;
 import org.bunnysugar.pojo.User;
+import org.bunnysugar.pojo.VerifyRequest;
 import org.bunnysugar.service.UserService;
 import org.bunnysugar.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,14 +35,17 @@ public class UserController {
         return Result.success("註冊成功！您的會員ID: " + userId);
     }
 
-    @GetMapping("/{id}")
-    public Result<User> getUserById(@PathVariable Integer id) {
-        User user = userService.SelectUserById(id);
-        if (user == null) {
-            return Result.error("用戶不存在");
+    @PostMapping("/verify")
+    public Result verifyUser(@RequestBody VerifyRequest verifyRequest) {
+        try {
+            userService.verifyUser(verifyRequest.getUserId(), verifyRequest.getToken());
+            return Result.success("驗證成功，您的帳戶已啟用");
+        } catch (InvalidTokenException | TokenExpiredException e) {
+            return Result.error("驗證失敗，請重新嘗試");
         }
-        return Result.success(user);
     }
+
+
 
     @PostMapping("/login")
     public Result<String> login(@RequestBody LoginRequest loginRequest) {
@@ -63,5 +70,4 @@ public class UserController {
         }
         return null;
     }
-
 }

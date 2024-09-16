@@ -4,3 +4,15 @@ spring:
     url: jdbc:mysql://localhost:3306/bunnysugar
     username: root
     password: root
+
+  mail:
+    host: smtp.example.com
+    port: 587
+    username: deedeego520@gmail.com
+    password: 87878778
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
